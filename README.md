@@ -58,8 +58,3 @@ Run the Application:
 
 python app.py
 
-
-
-Developed By
-
-Tejas Data Science @ IIT Mandi | Masai School
