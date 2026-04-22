@@ -42,11 +42,12 @@ Data: Pandas, NumPy, Scikit-learn
 
 Clone the repository:
 
-git clone https://github.com/yourusername/hybrid_recommender.git
+git clone [https://github.com/Tejas-I-M/hybrid_recommender.git]
+
 cd hybrid_recommender
 
-
 Setup .gitignore (Crucial for GitHub):
+
 Create a file named .gitignore to avoid pushing large data files:
 
 data/
