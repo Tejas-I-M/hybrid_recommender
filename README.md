@@ -1,77 +1,65 @@
-🧠 Project Architecture
-The system follows a Two-Stage Pipeline approach:
+🚀 Hybrid AI Recommendation Engine
 
-Stage 1: Candidate Generation (SVD) * Uses a PyTorch-based SVD (Singular Value Decomposition) model.
+SVD Matrix Factorization + CNN Sentiment Analysis
 
-Learns user and item embeddings to predict ratings for unseen products.
-
-Retrieves the top 20 "mathematical" candidates for a specific User ID.
-
-Stage 2: Sentiment Filtering (1D CNN)
-
-A 1D Convolutional Neural Network (CNN) analyzes the text of the most recent reviews for the top 20 candidates.
-
-If the CNN detects trending negative sentiment, the item is penalized and removed from the list.
-
-Ensures that "safe" and high-quality recommendations reach the user.
-
-🛠️ Tech Stack
-Deep Learning Framework: PyTorch (Custom nn.Module architectures)
-
-Language: Python 3.12
-
-Hardware Acceleration: NVIDIA CUDA (Optimized for GTX 1650)
-
-Database: MongoDB (API request logging & data persistence)
-
-Backend: Flask (RESTful API)
-
-Frontend: HTML5
-
-Data Processing: Pandas, NumPy, Scikit-learn
-
-📈 Model Performance
-Collaborative Filtering (SVD): Trained with MSE Loss, achieving high convergence on user-item interaction matrices.
-
-Sentiment Classifier (CNN): Achieved ~92.8% Validation Accuracy using a 1D-CNN architecture with Global Max Pooling.
-
+An end-to-end recommendation system that combines mathematical user-item collaborative filtering with deep learning-based sentiment analysis.
 📂 Project Structure
-Plaintext
+```text
 hybrid_recommender/
 ├── data/               # Raw and Processed CSV datasets
 ├── models/             # Saved .pth weights and vocab.json
-├── notebooks/          # Exploratory Data Analysis & Training experiments
-├── src/                
+├── notebooks/          # EDA & Training Jupyter Notebooks
+├── src/                # Core Logic Scripts
 │   ├── recommender.py  # SVD Inference Engine
 │   ├── sentiment.py    # CNN Inference Engine
-│   └── hybrid_engine.py # Master Pipeline Logic
-├── templates/          # HTML Frontend
+│   └── hybrid_engine.py# Master Pipeline Logic
+├── templates/          # HTML Frontend UI
 ├── app.py              # Flask Web Server & MongoDB Integration
-└── README.md
+└── README.md           # Installation & Setup Guide
+```
+
+🧠 How It Works
+
+The system follows a Two-Stage Pipeline approach to ensure high-quality recommendations:
+
+Candidate Generation (SVD): A PyTorch-based Matrix Factorization model predicts the top 20 items a user is likely to interact with based on historical data.
+
+Sentiment Filtering (1D CNN): A Deep Learning CNN reads the most recent reviews for those 20 items. If an item is currently trending with negative sentiment, it is filtered out.
+
+🛠️ Tech Stack
+
+Deep Learning: PyTorch (SVD & 1D-CNN)
+
+Database: MongoDB (Logging & Persistence)
+
+Backend: Flask (Python)
+
+Frontend: HTML5, CSS3, JavaScript
+
+Data: Pandas, NumPy, Scikit-learn
+
 🚀 Installation & Setup
+
 Clone the repository:
 
-Bash
 git clone https://github.com/yourusername/hybrid_recommender.git
 cd hybrid_recommender
-Install dependencies:
 
-Bash
-pip install torch pandas flask pymongo scikit-learn matplotlib
-Database Setup:
 
-Ensure MongoDB is running locally on port 27017.
+Setup .gitignore (Crucial for GitHub):
+Create a file named .gitignore to avoid pushing large data files:
+
+data/
+models/*.pth
+__pycache__/
+
 
 Run the Application:
 
-Bash
 python app.py
-The browser will automatically open the UI at http://127.0.0.1:5000.
 
-📊 Key Insights for Recruiters
-Cold Start & Trending Awareness: Unlike basic SVD models, this system handles trending product quality drops by utilizing real-time sentiment analysis.
 
-Systemic Reliability: Includes a MongoDB logging layer to track API performance and audit AI decisions.
 
-Optimized for Edge: Developed to run efficiently on consumer-grade GPUs (NVIDIA GTX 1650) using custom PyTorch optimization.
+Developed By
 
+Tejas Data Science @ IIT Mandi | Masai School
